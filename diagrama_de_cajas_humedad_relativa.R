@@ -1,0 +1,14 @@
+library(tidyverse)
+
+
+datos <- read.csv("./datos.csv", header= TRUE, sep=";")
+subset_data <- datos %>% slice(1:300)
+
+subset_data$RH <- as.numeric(gsub(",", ".", subset_data$RH))
+
+boxplot(subset_data$RH,
+        main = "Humedad relativa",
+        col = "#7FFFD4",
+        border = "black",
+        ylim = c(20, max(subset_data$RH, na.rm = TRUE)),
+        boxwex = 0.3)

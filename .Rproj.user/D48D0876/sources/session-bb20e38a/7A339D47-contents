@@ -1,0 +1,15 @@
+library(tidyverse)
+
+
+datos <- read.csv("./datos.csv", header= TRUE, sep=";")
+subset_data <- datos %>% slice(1:300)
+subset_data$AT <- as.numeric(gsub(",", ".", subset_data$AT))
+subset_data$PE <- as.numeric(gsub(",", ".", subset_data$PE))
+
+plot(subset_data$AT, subset_data$PE,
+     main = "Producción Energética vs Temperatura",
+     xlab = "Temperatura (°C)",
+     ylab = "Producción Energética",
+     col = "#CD3333",
+     pch = 19)
+abline(lm(PE ~ AT, data = subset_data), col = "#0000EE")

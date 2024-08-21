@@ -1,0 +1,15 @@
+library(tidyverse)
+
+
+datos <- read.csv("./datos.csv", header= TRUE, sep=";")
+subset_data <- datos %>% slice(1:300)
+
+subset_data$PE <- as.numeric(gsub(",", ".", subset_data$PE))
+
+boxplot(subset_data$PE,
+        main = "Producción Energética",
+        col = "#F0FFFF",
+        border = "black",
+        ylim = c(400, max(subset_data$PE, na.rm = TRUE)),
+        boxwex = 0.3)
+

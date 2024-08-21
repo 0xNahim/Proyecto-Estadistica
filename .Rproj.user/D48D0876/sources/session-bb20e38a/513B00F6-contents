@@ -1,0 +1,17 @@
+library(tidyverse)
+
+
+datos <- read.csv("./datos.csv", header= TRUE, sep=";")
+subset_data <- datos %>% slice(1:300)
+
+subset_data$PE <- as.numeric(gsub(",", ".", subset_data$PE))
+
+
+
+hist(subset_data$PE, 
+     main = "Histograma de la producción energética", 
+     xlab = "Valores de la producción energética", 
+     ylab = "Frecuencia", 
+     col = "#F0FFFF", 
+     border = "black")
+

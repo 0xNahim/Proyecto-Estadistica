@@ -1,0 +1,16 @@
+library(tidyverse)
+
+
+datos <- read.csv("./datos.csv", header= TRUE, sep=";")
+subset_data <- datos %>% slice(1:300)
+
+subset_data$RH <- as.numeric(gsub(",", ".", subset_data$RH))
+subset_data$PE <- as.numeric(gsub(",", ".", subset_data$PE))
+
+plot(subset_data$RH, subset_data$PE,
+     main = "Producción Energética vs Humedad Relativa",
+     xlab = "Humedad Relativa (%)",
+     ylab = "Producción Energética",
+     col = "#7FFFD4",
+     pch = 19)
+abline(lm(PE ~ RH, data = subset_data), col = "#0000EE")

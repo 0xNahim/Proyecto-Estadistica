@@ -1,0 +1,16 @@
+library(tidyverse)
+
+
+datos <- read.csv("./datos.csv", header= TRUE, sep=";")
+subset_data <- datos %>% slice(1:300)
+
+subset_data$RH <- as.numeric(gsub(",", ".", subset_data$RH))
+
+
+
+hist(subset_data$RH, 
+     main = "Histograma de la humedad relativa", 
+     xlab = "Valores de la humedad relativa", 
+     ylab = "Frecuencia", 
+     col = "#7FFFD4", 
+     border = "black")

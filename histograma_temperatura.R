@@ -1,0 +1,17 @@
+library(tidyverse)
+
+
+datos <- read.csv("./datos.csv", header= TRUE, sep=";")
+subset_data <- datos %>% slice(1:300)
+
+subset_data$AT <- as.numeric(gsub(",", ".", subset_data$AT))
+
+hist(subset_data$AT, 
+     main = "Histograma de la temperatura", 
+     xlab = "Valores de la temperatura", 
+     ylab = "Frecuencia", 
+     col = "#CD3333", 
+     border = "black")
+
+
+
